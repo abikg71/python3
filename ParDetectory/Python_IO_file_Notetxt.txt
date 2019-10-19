@@ -1,0 +1,51 @@
+
+October 16, 2019
+
+par = open("textFile.txt","r") reads the file
+par = open("textFile.txt","w") writes to(the) file
+par = open("textFile.txt","a") adds(appends) the file to the existing file.
+par =open("textFile.txt", "a+")  create a new file if it does not exist
+
+par.writelines(all_lines)  writes multiple line of text to the file
+par = = open("textFile.txt", "x") creates empty file unless returns an error
+              if the file exists.
+'r+' : use for reading and writing to the same file
+
+for i in range(10):
+     f.write("This is line %d\r\n" % (i+1))
+  # string1 = "Hello,  Joe"
+  # string2 = "Hello, Joe "
+  #
+  # if(string1 == string2):
+  #     print(string1)
+  #
+  # elif(string1 != string2):
+  #     print(string1)
+  #     print(string2)
+  #
+  # else:
+  #     print("Not Good!")
+
+  #def par_crud(): # crud= create, read, update,delete.
+  crud_time = time.asctime(time.localtime(time.time()))
+  print ("Local current time :", crud_time)
+
+  def par_copy_to():
+      with open("textFile.txt", "w") as f:
+          for line in open("original.txt"):
+              if "there exits" in line:
+                  f.write(line)
+      f.close()
+
+
+  def par_write_to():
+    get_text = input(str("""Enter your text/ past it here  """))
+    with open("textFile.txt", "a") as par:
+        for line in open("original.txt"):
+            if "today " in line:
+                par.write(line)
+            else:
+                print("Strng doesnt exist in original.txt ")
+        par.write("\n" + get_text)
+        par.close()
+        print(space)

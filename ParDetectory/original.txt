@@ -1,0 +1,14 @@
+welcome to were you belong
+original.txt
+Test test test Test Test
+Back to Original spacing
+# it shoud write "there exists to textFile.txt"
+there exit
+there exits
+there exits there exits
+there
+exist
+exists
+there exits today
+Abinet
+abinet
