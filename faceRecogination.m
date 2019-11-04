@@ -1,37 +1,32 @@
-% Abinet Kenore
-% November 3, 2019
 clc
 clear all
 close all
+% Abinet Kenore
 %Friday October 25, 2019 10:45 to 1159PM
 %%%%%%%%%%%%%%%% enhancement %%%%%%%%%%%%%%%%%%%%%%
  %im_pro =imread('./Dataset/enrolling/ID01_001.bmp');
  %im_en=histeq(im_pro);
-
 %%%%%%%%%%%%%%%%%%%%% TRAINING %%%%%%%%%%%%%%%%%%%%
 imlist=dir('./Dataset/enrolling/*.bmp');
 im =imread(['./Dataset/enrolling/',imlist(1).name]);
-%img =rgb2gray(im); % converts color img to gray
 
 [r,c]=size(im);
 num_im=length(imlist);
-num_p=num_im/5; % The # number of pictures changed from 2 -> 5
+num_p=num_im/5;
 x=zeros((r*c),num_p);
 im_vector=zeros(r*c,num_im);
 Mec=zeros(r*c,1);
 index=zeros;
 index2=zeros;
-match=zeros(1,30);
-match2=zeros(1,10);
-cmc=zeros(1,30);
+match=zeros(1,30); %Changed from 10 to 30
+match2=zeros(1,30);
+cmc=zeros(0,30);
 cmc2=zeros(1,30);
-
 %%%%%% convert all images to vector %%%%%%
 for i=1:num_im
     im =imread(['./Dataset/enrolling/',imlist(i).name]);
     im_vector(:,i)=reshape(im',r*c,1);
 end
-
 %%%%%%%%%%%%%% to get xi and Me%%%%%%%%%%%%%%%%
 j=1; %xi for five images # Modification
 for i=1:5:(num_im-4)
@@ -40,12 +35,10 @@ Mec(:,1)=Mec(:,1)+im_vector(:,i)+im_vector(:,i+1)+im_vector(:,i+2)+im_vector(:,i
 j=j+1;
 end
 Me=Mec(:,1)./num_im;
-
 %%%%%%%%%%%%%% to get big A %%%%%%%%%%%%%%%%%%%%
 for i=1:num_p
 a(:,i)=x(:,i)-Me;
 end
-
 %%%%%%%%%%%%%% to get eig of A'*A (P2) %%%%%%%%%
 ata = a'*a;
 [V, D] = eig(ata);
@@ -55,57 +48,42 @@ for i = 1 : size(V,2)
         p2 = [p2 V(:,i)];
     end
 end
-
 %%%weight of the training data projected into eigen space%%%%%
 wta=p2'*ata; % A*P2= P;  P'*A =Wt_A
-plot(wta(:,1));title('Weights representing Faces of Person1');
-figure,plot(wta(:,2));title('Weights representing Faces of Person2');
-figure,plot(wta(:,3));title('Weights representing Faces of Person3');
-figure,plot(wta(:,4));title('Weights representing Faces of Person4');
 
 %%%%%%%%%%%%%% to get the Eigenfaces %%%%%%%%%%%%
 ef =a*p2;  %here is the P you need to use in matching
 [rr,cc]=size(ef);
-
 for i=1:cc
 eigim_t=ef(:,i);
 eigface(:,:,i)=reshape(eigim_t,r,c);
 figure,imagesc(eigface(:,:,i)');
-axis image;axis off;
-colormap(gray(256));
+axis image;axis off; colormap(gray(256));
 title('Eigen Face Image','fontsize',10);
 end
-
 %%%%%%%%%%%%%%%%%%%%%%%  TESTING  %%%%%%%%%%%%%%%%%%%%%%%%
-imlist2=dir('./Dataset/testing/*.png');
+imlist2=dir('./Dataset/testing/*.bmp');
 num_imt=length(imlist2);
 imt_vector=zeros(r*c,num_imt);
-
 %%%%%% convert all test images to vector %%%%%%
 for i=1:num_imt
 im =imread(['./Dataset/testing/',imlist2(i).name]);
 imt_vector(:,i)=reshape(im',r*c,1);
-
 %%%%% get B=y-me %%%%%%%
 b(:,i)=imt_vector(:,i)-Me;  %% bi=imt_vector(i)-Me;
 wtb=ef'*b(:,i);  %%wtb=P'*bi;
-
 for ii=1:num_p   %% weight compare wtb and wta(i)
  eud(ii)=sqrt(sum((wtb-wta(:,ii)).^2));
 end
 [cdata, index(i)]=min(eud);  %% find minimum eud's index
-
 %%%%%%%%%%%%%%%%%%%%%%%  RESULT  %%%%%%%%%%%%%%%%%%%%%%%%
 %%% right result by observation is 1 1 2 3 4 %%%%%
-
-%rresult=[1 1 2 3 4];
-
+% see the pattern
 rresult=[1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 4 4 4 4 4 5 5 5 5 5 6 6 6 6 6 7 7 7 7 7 8 8 8 8 8 9 9 9 9 9 ...
     10 10 10 10 10 11 11 11 11 11 12 12 12 12 12 13 13 13 13 13 14 14 14 14 14 15 15 15 15 15 16 16 16 16 16 17 17 17 17 17 18 18 18 18 18 ...
     19 19 19 19 19 20 20 20 20 20 21 21 21 21 21 22 22 22 22 22 23 23 23 23 23 24 24 24 24 24 25 25 25 25 25 26 26 26 26 26 27 27 27 27 27 ...
-    28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 ...
-    36 36 36 36 36 37 37 37 37 37 38 38 38 38 38 39 39 39 39 39 40 40 40 40 40 41 41 41 41 41 42 42 42 42 42 43 43 43 43 43 44 44 44 44 44 45 45 45 45 45];
-
+    28 28 28 28 28 29 29 29 29 29 30 30 30 30 30 31 31 31 31 31 32 32 32 32 32 33 33 33 33 33 34 34 34 34 34 35 35 35 35 35 36 36 36 36 36 ...
+    37 37 37 37 37 38 38 38 38 38 39 39 39 39 39 40 40 40 40 40 41 41 41 41 41 42 42 42 42 42 43 43 43 43 43];
 %%%%%%%%%%%%%%% CMC calculation %%%%%%%
 if index(i)==rresult(i)
     match(1)=match(1)+1;%%%%%%%first rank matching number
@@ -146,7 +124,6 @@ else
         if idx(12)==rresult(i)
             match(12)=match(12)+1;
         end
-
         if idx(13)==rresult(i)
             match(13)=match(13)+1;
         end
@@ -203,8 +180,7 @@ else
         end
 end
 end
-
-for i=1:10  %% if show CMC of the 1st to 10th rank matching number
+for i=1:30  %% The CMC of the 1st to 10th rank matching number
 cmc(i)=sum(match(1:i))/num_imt;
 end
 figure,plot(cmc);title('CMC curve');
