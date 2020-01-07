@@ -19,15 +19,17 @@ def crud_log():
     crud_par.close()
 
 
-def par_write_to():   #fw, fr
+def par_write_to():   # fw, fr
     print("\n" + space)
     get_text = input(str("""Enter your text/ past it here  """))
     with open("textFile.txt", "a") as par:
         for line in open("original.txt"):
-            if "Wellcome" in line:
+            if get_text in line:
                 par.write(line)
-            else:
-                print("String doesnt exist in original.txt ")
+                print("String exists in original.txt ")
+            # else:
+                # print("String doesn't exist in original.txt ")
+        print("new text added to the textFile. ")
         par.write("\n" + get_text)
         par.close()
         print(space)

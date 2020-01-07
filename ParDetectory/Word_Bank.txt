@@ -1,12 +1,13 @@
 #Word Bank project
 # Abinet Kenore
 # October (18) 2019
+# Revisited Today December 24, 2019
 # The whole purpose this project is to Store Amharic words(correct Spelling)
 # and to use it when you type something in Amharic
 #Make sure if there exist one already
 
 Design
-  Pick a programming
+  Pick a programming language
   What db to use and why
   starting writing
 
@@ -21,3 +22,5 @@ Features
   3. Evaluate the importance of the app.
   4. release the MVP and collect the survey from the users.
   5. Privacy and copy rights .....
+
+  Spelling
