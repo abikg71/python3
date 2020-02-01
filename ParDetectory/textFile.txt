@@ -87,4 +87,25 @@ there exits today
 here
 helloabinet
 
-abinet
+abinet# it shoud write "there exists to textFile.txt"
+there exit
+there exits
+there exits there exits
+there
+there exits today
+
+there# it shoud write "there exists to textFile.txt"
+there exit
+there exits
+there exits there exits
+there
+there exits today
+
+there# it shoud write "there exists to textFile.txt"
+there exit
+there exits
+there exits there exits
+there
+there exits today
+
+there

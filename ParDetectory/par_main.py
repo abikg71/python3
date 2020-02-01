@@ -27,8 +27,8 @@ def par_write_to():   # fw, fr
             if get_text in line:
                 par.write(line)
                 print("String exists in original.txt ")
-            # else:
-                # print("String doesn't exist in original.txt ")
+            #  elif:
+            #     print("New String added to textFile ")
         print("new text added to the textFile. ")
         par.write("\n" + get_text)
         par.close()

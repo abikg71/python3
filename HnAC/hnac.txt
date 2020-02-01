@@ -1,0 +1,22 @@
+Jan 25, 2020
+Hossana and Area Colorado Community
+
+Objective
+The objecive of this project is to learn how the sms/notification works by connecting with phone and to give the mm the real time Update on the current issue.
+
+
+what it is gonna do do?
+
+Update the mm by sending mothly notice to make a payment alert
+if someone has not paid already in the way the user preferred to get
+the notification email/sms
+New mm can add themselves o the group
+
+
+Design and Approach
+
+Tech
+pick a programming languge
+FEpl
+BEpl
+Databases
