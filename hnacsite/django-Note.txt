@@ -1,0 +1,144 @@
+Jan 25, 2020
+Hossana and Area Colorado Community
+
+Objective
+The objective of this project is to learn how the sms/notification works by connecting with phone and to give the mm the real time Update on the current issue.
+
+
+what it is gonna do do?
+
+Update the mm by sending monthly notice to make a payment alert
+if someone has not paid already in the way the user preferred to get
+the notification email/sms
+New mm can add themselves o the group
+
+
+Design and Approach
+
+Tech
+pick a programming language
+FEpl
+BEpl
+Databases
+Integrate calendar
+
+Seleunium?
+
+python --m django --version
+ python -m django --version
+
+ django-admin list of subcomand available to use
+ check
+  compilemessages
+  createcachetable
+  dbshell
+  diffsettings
+  dumpdata
+  flush
+  inspectdb
+  loaddata
+  makemessages
+  makemigrations
+  migrate
+  runserver
+  sendtestemail
+  shell
+  showmigrations
+  sqlflush
+  sqlmigrate
+  sqlsequencereset
+  squashmigrations
+  startapp
+  startproject
+  test
+  testserver
+
+ django-admin startproject hnacsite creates the app
+ python manage.py runserver
+      http://127.0.0.1:8000/
+      http://127.0.0.1:8000/admin/login/?next=/admin/
+
+python manage.py startapp blog to add new sites
+
+python manage.py makemigrations
+
+python manage.py migrate creates migrations
+
+python manage.py createsuperuser
+Username (leave blank to use 'abiken'): abinetdj
+Email address: abikg71@gmail.com
+New User
+testusrdj
+Welcomenewusr
+
+ Database and Migrations
+ OMR
+ Go to  blog/models.py
+ create classes
+
+  run python manage.py makemigrations
+  will creates blog/migrations/__init__.py
+
+  python manage.py sqlmigrate blog 0001 creates sql code
+
+  python manage.py migrate
+  python manage.py shell
+
+from blog.models import Post
+from django.contrib.auth.models import User #
+
+User.objects.all() displays <QuerySet [<User: abinetdj>, <User: testusrdj>]>
+
+User.objects.first()
+User.objects.last()
+User.objects.filter(username='abinetdj')
+User.objects.filter(username='abinetdj').first()
+user = User.objects.filter(username='abinetdj').first()
+
+>>> user
+<User: abinetdj>
+>>> user.id
+1
+>>> user.pk
+1
+user = User.objects.get(id=1)
+
+Post.objects.all()
+
+post_1 = Post(title = ' Blog 1', content = 'First post content', author=user)
+
+
+post_1.save()
+create  in models.py
+def __str__(self):
+      return self.title
+
+exit the shell run pyhon manage.py shell redo
+post_2 = Post(title= ' Blog 2', content = 'Second post content', author_id =user.id)
+post_2.save()
+
+post = Post.objects.first()
+>>> post.content
+'First post content'
+>>> post.author
+<User: abinetdj>
+>>> post.date_posted
+datetime.datetime(2020, 2, 6, 15, 7, 34, 949614, tzinfo=<UTC>)
+>>> post.title
+' Blog 1'
+
+post.author.email
+'abikg71@gmail.com
+
+user.post_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x1108d6f50>
+>>> user.post_set.all()
+<QuerySet [<Post:  Blog 1>, <Post:  Blog 2>]>
+
+user.post_set.create(title= ' Blog 3', content = 'Third post content')
+
+
+
+
+
+.

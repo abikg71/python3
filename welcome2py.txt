@@ -1,0 +1,14 @@
+How to set Python3 as a default python version on Mac
+
+#https://dev.to/irfnhm/how-to-set-python3-as-a-default-python-version-on-mac-4jjf
+
+
+1. brew install python
+
+2.Look where it is installed by : ls -l /usr/local/bin/python*
+
+3. Change the default python symlink to the version you want
+  --> ln -s -f /usr/local/bin/python3.7 /usr/local/bin/python
+
+3. Check the version:  python --version
+  Success msg : Python 3.8.1
