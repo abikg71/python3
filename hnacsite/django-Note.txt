@@ -1,4 +1,5 @@
 Jan 25, 2020
+The best YouTube series I ever watched from beginning to the ending. Thank you Corey you are Awesome.
 Hossana and Area Colorado Community
 
 Objective
@@ -137,6 +138,38 @@ user.post_set
 
 user.post_set.create(title= ' Blog 3', content = 'Third post content')
 
+# The make sure to redo ...
+>>> User.objects.all()
+<QuerySet [<User: abinetdj>, <User: testusrdj>]>
+>>> user = User.objects.filter(username='abinetdj').first()
+>>> user
+<User: abinetdj>
+>>> post.objects.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'post' is not defined
+>>> user
+<User: abinetdj>
+>>> user.post_set
+<django.db.models.fields.related_descriptors.create_reverse_many_to_one_manager.<locals>.RelatedManager object at 0x10db84050>
+>>> user.post_set.all()
+<QuerySet [<Post:  Blog 1>, <Post:  Blog 2>, <Post:  Blog 3>]>
+
+
+
+TO See the post in admin page go to blog/admin.py and register the  the admin.site.register(post)
+
+User Registration wout admin access
+
+ hnacsite git:(master) ✗ python manage.py startapp users
+ creates users app
+ users.apps.BlogConfig', settings.py
+ then in users/views.py create a function
+
+ Create New user with
+ newuserad
+ NewUser1@company.com
+ NewUser1
 
 
 
