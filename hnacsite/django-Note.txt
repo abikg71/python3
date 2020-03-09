@@ -25,7 +25,6 @@ Integrate calendar
 
 Seleunium?
 
-python --m django --version
  python -m django --version
 
  django-admin list of subcomand available to use
@@ -71,6 +70,7 @@ Email address: abikg71@gmail.com
 New User
 testusrdj
 Welcomenewusr
+testprofile n pw testprofile1
 
  Database and Migrations
  OMR
@@ -95,8 +95,10 @@ User.objects.last()
 User.objects.filter(username='abinetdj')
 User.objects.filter(username='abinetdj').first()
 user = User.objects.filter(username='abinetdj').first()
-
+user = User.objects.filter(username='testtest').first()
 >>> user
+user.profile.image.width
+user.profile.image.url
 <User: abinetdj>
 >>> user.id
 1
@@ -172,6 +174,30 @@ User Registration wout admin access
  NewUser1
 
 
+ newuserpp
+nupp@company.com
+Newuser123
+ in Base.html add if msg....
+
+crispy form for django from 3rd party
+  pip install django-crispy-forms
+
+Login and Logout System
+
+Profile
+# run migration
+#python manage.py makemigrations
+# make sure pip pillow is installed
+
+# python manage.py migrate
+# Reginster in users/admin.py
+
+To access those pictures go to python shell
+
+http://127.0.0.1:8000/admin/users/profile/
 
 
-.
+/hnacsite/users/signals.py and then in
+/hnacsite/users/signals.py and then in
+/hnacsite/users/signals.py and  in users/admin.py
+add a ready fun
