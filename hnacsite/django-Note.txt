@@ -201,3 +201,20 @@ http://127.0.0.1:8000/admin/users/profile/
 /hnacsite/users/signals.py and then in
 /hnacsite/users/signals.py and  in users/admin.py
 add a ready fun
+
+#032620
+To add image on blog sides
+.. /hnacsite/blog/templates/blog/home.html
+  <img src={{"post.author.profile.image.url"}} alt="">
+
+  Part 10 - Create, Update, and Delete Posts
+  blog/views.py
+  Create a new class
+    PostListView,
+    PostDetailView,
+    PostCreateView,
+    PostUpdateView,
+    PostDeleteView,
+    UserPostListView
+
+then in blog/urls.py modifiy the file
