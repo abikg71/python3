@@ -10,7 +10,6 @@ from django.views.generic import (
 )
 from .models import Post
 
-
 def home(request):
     context = {
         'posts': Post.objects.all()
@@ -45,7 +44,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content']
 
-    def form_valid(self, form):
+    def form_valid(self, form): # uses the loged in user to create a new post
         form.instance.author = self.request.user
         return super().form_valid(form)
 

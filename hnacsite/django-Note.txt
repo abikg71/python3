@@ -26,32 +26,19 @@ Integrate calendar
 Seleunium?
 
  python -m django --version
-
  django-admin list of subcomand available to use
  check
   compilemessages
   createcachetable
-  dbshell
-  diffsettings
-  dumpdata
-  flush
-  inspectdb
-  loaddata
-  makemessages
+  dbshell   diffsettings
+  dumpdata      flush  inspectdb
+  loaddata     makemessages
   makemigrations
-  migrate
-  runserver
-  sendtestemail
-  shell
-  showmigrations
-  sqlflush
-  sqlmigrate
-  sqlsequencereset
-  squashmigrations
-  startapp
-  startproject
-  test
-  testserver
+  migrate     runserver  sendtestemail
+  shell       showmigrations
+  sqlflush     sqlmigrate
+  sqlsequencereset  squashmigrations    startapp
+  startproject        test    testserver
 
  django-admin startproject hnacsite creates the app
  python manage.py runserver
@@ -173,7 +160,6 @@ User Registration wout admin access
  NewUser1@company.com
  NewUser1
 
-
  newuserpp
 nupp@company.com
 Newuser123
@@ -193,9 +179,7 @@ Profile
 # Reginster in users/admin.py
 
 To access those pictures go to python shell
-
 http://127.0.0.1:8000/admin/users/profile/
-
 
 /hnacsite/users/signals.py and then in
 /hnacsite/users/signals.py and then in
@@ -217,4 +201,28 @@ To add image on blog sides
     PostDeleteView,
     UserPostListView
 
+..blog/templates/blog/post_confirm_delete.html and others
+
 then in blog/urls.py modifiy the file
+
+In order to put the lastest post at the top
+views.py
+ordering = ['-date_posted']
+
+To make sure the PostListView is working go to http://127.0.0.1:8000/blog/post/1/
+
+
+In order to link the indivisual posts to author and more go to
+blog/templates/blog/home.html
+
+h2><a class="article-title" href="{% url 'post-detail' post.id%}">{{ post.title }}</a></h2>
+
+When you havor over the post it becomes link
+
+To Create a new post
+blog/templates/blog/post_form.html this is how it has to be writeen
+http://127.0.0.1:8000/blog/post/new/
+
+Then blog/models.py
+
+http://127.0.0.1:8000/login/?next=/blog/post/new/ 
